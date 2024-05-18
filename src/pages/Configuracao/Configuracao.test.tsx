@@ -20,17 +20,4 @@ describe('a página de configuração', () => {
     );
     expect(container).toMatchSnapshot();
   });
-
-  test('deve ter um título', () => {
-    // implemente o teste aqui
-  });
-  test('deve ter um campo para inserir o nome do participante', () => {
-    // implemente o teste aqui
-  });
-  test('deve ter um botão para adicionar o participante', () => {
-    // implemente o teste aqui
-  });
-  test('deve ter uma lista de participantes', () => {
-    // implemente o teste aqui
-  });
 });
