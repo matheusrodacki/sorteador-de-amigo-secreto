@@ -21,6 +21,7 @@ const Rodape = () => {
         onClick={iniciar}>
         Iniciar Brincadeira
       </button>
+      <img src='/images/sacolas.png' alt='Sacolas de compras' />
     </footer>
   );
 };
