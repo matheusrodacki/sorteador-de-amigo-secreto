@@ -3,6 +3,7 @@ import { RecoilRoot } from 'recoil';
 import { useListaDeParticipantes } from '../../state/hooks/useListaDeParticipantes';
 import Sorteio from './Sorteio';
 import { useResultadoDoSorteio } from '../../state/hooks/useResultadoDoSorteio';
+import { act } from 'react-dom/test-utils';
 
 jest.mock('../../state/hooks/useListaDeParticipantes', () => {
   return {
@@ -56,5 +57,25 @@ describe('Na pagina de sorteio', () => {
     const amigoSecreto = screen.getByRole('alert');
 
     expect(amigoSecreto).toBeInTheDocument();
+  });
+  test.skip('esconde o amigo secreto sorteado depois de 5 segundos', async () => {
+    jest.useFakeTimers();
+
+    render(
+      <RecoilRoot>
+        <Sorteio />
+      </RecoilRoot>
+    );
+
+    const select = screen.getByPlaceholderText('Selecione o seu nome');
+    fireEvent.change(select, { target: { value: participantes[1] } });
+
+    const button = screen.getByRole('button');
+    fireEvent.click(button);
+    act(() => {
+      jest.runAllTimers();
+    });
+    const alerta = screen.queryByRole('alert');
+    expect(alerta).not.toBeInTheDocument();
   });
 });
